@@ -91,6 +91,9 @@ docker exec gerenciador_app php artisan test
 
 ### 🎨 Interface do Usuário (Web)
 
+| Animação GIF Demonstrando o sistema.
+![GerenciadorProdutos](https://github.com/user-attachments/assets/e6fe8a8a-7a59-432b-92f0-dc8c914119ce)
+
 | Vitrine de Produtos (Público) | Painel Administrativo (Logado) |
 |---|---|
 | ![vitrine](https://github.com/user-attachments/assets/a918c39f-b5fb-45a0-abc5-dae89a553c6f) | ![admin](https://github.com/user-attachments/assets/ea93e988-ca08-45aa-816b-1f6cdefcae2a) |
