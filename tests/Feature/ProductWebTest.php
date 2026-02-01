@@ -4,18 +4,24 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Models\Product;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProductWebTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    public function test_guest_connot_access_product_list()
+    public function test_guest_can_access_product_list()
     {
-        $response = $this->get('/products');
+        // Mudamos o teste: agora o guest DEVE conseguir acessar (Status 200)
+        $response = $this->get('/');
+        $response->assertStatus(200);
+    }
 
+    public function test_guest_cannot_access_create_page()
+    {
+        // Testamos uma rota que continua protegida
+        $response = $this->get('/products/create');
         $response->assertRedirect('/login');
     }
 
@@ -30,7 +36,8 @@ class ProductWebTest extends TestCase
             'description' => 'Monitor Ultra HD 4k de 43 polegadas',
         ]);
 
-        $response->assertRedirect('/products');
+        // O redirecionamento agora é para a rota 'products.index' que é '/'
+        $response->assertRedirect('/');
         $this->assertDatabaseHas('products', ['name' => 'Monitor 4k']);
     }
 }
