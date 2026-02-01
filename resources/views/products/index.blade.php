@@ -17,7 +17,7 @@
 
             <!-- ALERTA VERDE DE SUCESSO -->
             @if (session('success'))
-                <div id="success-alert" class="mb-6 flex items-center bg-green-500 text-white text-sm font-bold px-4 py-3 rounded-lg shadow-lg">
+                <div id="success-alert" class="mb-6 flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 rounded-lg shadow-lg">
                     <p>{{ session('success') }}</p>
                 </div>
                 <script>setTimeout(() => { document.getElementById('success-alert')?.remove(); }, 4000);</script>
