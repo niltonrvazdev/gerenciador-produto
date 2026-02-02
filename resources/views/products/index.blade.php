@@ -66,6 +66,7 @@
                             <tr>
                                 <th class="px-6 py-3 text-left">Foto</th>
                                 <th class="px-6 py-3 text-left">Produto</th>
+                                <th class="px-6 py-3 text-left">Descrição</th>
                                 <th class="px-6 py-3 text-left">Preço</th>
                                 <th class="px-6 py-3 text-left">Estoque</th>
                                 <th class="px-6 py-3 text-center">Ações</th>
@@ -78,6 +79,7 @@
                                         <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : 'https://placehold.co/100x100?text=Sem+Foto' }}" class="w-10 h-10 object-cover rounded-lg border shadow-sm">
                                     </td>
                                     <td class="px-6 py-4 font-bold text-gray-900">{{ $product->name }}</td>
+                                    <td class="px-6 py-4 font-bold text-gray-900">{{ $product->description }}</td>
                                     <td class="px-6 py-4 text-gray-600 font-medium">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
                                     <td class="px-6 py-4">
                                         <span class="px-2 py-0.5 rounded text-[10px] font-black {{ $product->stock < 10 ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600' }}">
