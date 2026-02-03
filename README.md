@@ -25,11 +25,15 @@ Antes de começar, você precisa ter instalado no seu computador:
 
 ## 1️⃣ Baixar o projeto
 
-Abra o terminal e execute:
+## Instalação
+
+Execute os comandos abaixo no terminal:
 
 ```bash
 git clone https://github.com/niltonvaz/gerenciador-produto.git
-
+cd gerenciador-produto
+cp .env.example .env
+docker compose up -d --build
 ```
 
 ---
