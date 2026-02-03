@@ -3,6 +3,11 @@ set -e
 
 cd /var/www/html
 
+# Garante .env
+if [ ! -f ".env" ]; then
+  cp .env.example .env
+fi
+
 if [ ! -d "vendor" ]; then
   composer install --no-interaction --prefer-dist
 fi
@@ -24,7 +29,7 @@ chown -R www-data:www-data storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
 if [ ! -L "public/storage" ]; then
-  php artisan storage:link
+  php artisan storage:link || true
 fi
 
 php artisan migrate --force || true
