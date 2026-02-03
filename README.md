@@ -1,68 +1,30 @@
-# 📦 Gerenciador de Produtos - Laravel 12 & Docker
+# 📦 Gerenciador de Produtos - Laravel 12 & Docker (Automação Total)
 
-Este projeto é uma solução para gerenciamento de produtos, desenvolvida com **Laravel 12** e **PHP 8.2**. A aplicação segue as melhores práticas de desenvolvimento, utilizando princípios **SOLID**, **Clean Code** e **Arquitetura em Camadas (Service Layer)**.
+Este projeto é uma solução de alta performance para gerenciamento de produtos, desenvolvida com **Laravel 12** e **PHP 8.3**. A arquitetura foi desenhada para ser **"Zero Config"**, onde todo o ambiente (Servidor Nginx, Banco MySQL, Node.js para Assets e Dependências PHP) é configurado automaticamente via Docker.
 
-## 🛠️ Tecnologias e Ferramentas
-
-- **Framework:** Laravel 12
-- **Linguagem:** PHP 8.2
-- **Banco de Dados:** MySQL 8.0
-- **Containerização:** Docker & Docker Compose
-- **Autenticação Web:** Laravel Breeze (Blade + Tailwind)
-- **Autenticação API:** Laravel Sanctum (Bearer Token)
-- **Testes:** PHPUnit
+**Repositório Oficial:** [https://github.com/niltonrvazdev/gerenciador-produto.git](https://github.com/niltonrvazdev/gerenciador-produto.git)
 
 ---
 
-## 🚀 Como Executar a Aplicação
+## 🚀 Instalação "Um Clique" (Full Automation)
 
-Siga os passos abaixo para configurar o ambiente em sua máquina local:
+Não é necessário ter PHP, Node ou MySQL instalados em sua máquina física. O sistema cuida de tudo.
 
 ### 1. Clonar o Repositório
 ```bash
 git clone https://github.com/niltonrvazdev/gerenciador-produto.git
 cd gerenciador-produto
-```
-
-### 2. Configurar Variáveis de Ambiente
-```bash
+2. Preparar o Ambiente
+code
+Bash
 cp .env.example .env
-```
-*Nota: Verifique se os valores de banco no `.env` coincidem com o `docker-compose.yml`.*
-
-### 3. Subir o Ambiente Docker
-```bash
-docker compose up -d
-```
-
-### 4. Instalar Dependências e Preparar o Banco
-Execute os comandos abaixo para configurar o Laravel dentro do container:
-```bash
-# Instalar dependências
-docker exec gerenciador_app composer install
-
-# Gerar chave da aplicação
-docker exec gerenciador_app php artisan key:generate
-
-# Criar link simbólico para as imagens (Storage)
-docker exec gerenciador_app php artisan storage:link
-
-# Rodar Migrations e Seeders
-docker exec gerenciador_app php artisan migrate --seed
-```
-**Acesso:** [http://localhost:8000](http://localhost:8000)
-
-### 5. Compilação de Assets (CSS/JS)
-Para que o layout (Tailwind CSS) funcione corretamente, você deve compilar os arquivos de front-end. 
-Rode os comandos abaixo na sua máquina local (fora do container, na pasta raiz do projeto):
-
-```bash
-npm install
-npm run build
----
+3. Subir e Instalar tudo
+Execute o comando abaixo e aguarde. O Docker irá baixar as imagens e o script entrypoint.sh fará o resto:
+code
+Bash
+docker compose up -d --build
 
 ## 🧪 Como Executar os Testes
-
 A aplicação conta com uma suíte de testes unitários e de integração que garantem a integridade das regras de negócio.
 ```bash
 docker exec gerenciador_app php artisan test
