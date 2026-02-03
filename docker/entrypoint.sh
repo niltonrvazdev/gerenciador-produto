@@ -9,6 +9,9 @@ echo "🚀 Inicializando aplicação Laravel..."
 # Aguarda MySQL
 # ===============================
 echo "⏳ Aguardando MySQL..."
+until nc -z db 3306; do
+  sleep 2
+done
 until php -r "
 try {
     new PDO(
