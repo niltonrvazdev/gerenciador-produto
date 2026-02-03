@@ -88,13 +88,29 @@ docker exec gerenciador_app php artisan test
 
 **Cadastro:**
 ![cadastrar](https://github.com/user-attachments/assets/8fc8e489-7470-4760-ad06-577021adb022)
-
+**Exemplo**
+{
+    "name": "Teclado Mecânico RGB2",
+    "description": "Switch Brown, ABNT2",
+    "price": 350.90,
+    "stock": 15,
+    "image_url": ""
+}
 **Atualização:**
 ![atualizar](https://github.com/user-attachments/assets/6d08308f-1ccc-4e6a-8e25-eef73e6f9eda)
+**Exemplo**
+{
+    "name": "Relogio",
+    "description": "Verde",
+    "price": 54.90,
+    "stock": 15,
+    "image_url": ""
+}
 
 **Exclusão:**
 ![excluir](https://github.com/user-attachments/assets/ae6bbb40-a845-498e-b78b-c32b80558d1e)
-
+**Exemplo**
+http://localhost:8000/api/products/valor_do_gregistro_a_ser_excluido
 ---
 
 **Desenvolvido por Nilton Rodrigues Vaz** 🚀
