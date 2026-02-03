@@ -10,11 +10,8 @@ services:
       - .:/var/www/html
     depends_on:
       - db
-    networks:
-      - laravel
     expose:
-    - "9000"
-
+      - "9000"
 
   nginx:
     image: nginx:alpine
