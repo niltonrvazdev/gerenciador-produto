@@ -11,7 +11,7 @@ Não é necessário ter PHP, Node ou MySQL instalados em sua máquina física. O
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/niltonrvazdev/gerenciador-produto.git
+git clone https://github.com/niltonvaz/gerenciador-produto.git
 cd gerenciador-produto
 2. Preparar o Ambiente
 code
