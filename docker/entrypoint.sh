@@ -4,10 +4,7 @@ echo "🚀 Iniciando Laravel no Docker..."
 
 # Aguarda o banco
 echo "⏳ Aguardando MySQL..."
-until php artisan migrate:status > /dev/null 2>&1
-do
-  sleep 2
-done
+
 
 # Instala dependências
 if [ ! -d "vendor" ]; then
