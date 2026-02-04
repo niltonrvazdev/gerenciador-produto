@@ -1,71 +1,39 @@
-# 📦 Gerenciador de Produtos - Laravel 12 & Docker
+# 📦 Gerenciador de Produtos - Laravel 12 & Docker (Automação Total)
 
-Este projeto é uma solução para gerenciamento de produtos, desenvolvida com **Laravel 12** e **PHP 8.2**. A aplicação segue as melhores práticas de desenvolvimento, utilizando princípios **SOLID**, **Clean Code** e **Arquitetura em Camadas (Service Layer)**.
+Este projeto é uma solução de alta performance para gerenciamento de produtos, desenvolvida com **Laravel 12** e **PHP 8.3**. A arquitetura foi desenhada para ser **"Zero Config"**, onde todo o ambiente (Servidor Nginx, Banco MySQL, Node.js para Assets e Dependências PHP) é configurado automaticamente via Docker.
 
-## 🛠️ Tecnologias e Ferramentas
+**Repositório Oficial:** [https://github.com/niltonvaz/gerenciador-produto.git](https://github.com/niltonvaz/gerenciador-produto.git)
+---
 
-- **Framework:** Laravel 12
-- **Linguagem:** PHP 8.2
-- **Banco de Dados:** MySQL 8.0
-- **Containerização:** Docker & Docker Compose
-- **Autenticação Web:** Laravel Breeze (Blade + Tailwind)
-- **Autenticação API:** Laravel Sanctum (Bearer Token)
-- **Testes:** PHPUnit
+## 🚀 Instalação "Um Clique" (Full Automation)
+
+Não é necessário ter PHP, Node ou MySQL instalados em sua máquina física. O sistema cuida de tudo.
+
+### 1. # 🚀 Como rodar o projeto (passo a passo para iniciantes)
+
+## ✅ Pré-requisitos
+Antes de começar, você precisa ter instalado no seu computador:
+
+- Git
+- Docker
+- Docker Compose
+
+> ⚠️ Não é necessário instalar PHP, MySQL, Node ou NPM.
+> Tudo isso será executado automaticamente dentro do Docker.
 
 ---
 
-## 🚀 Como Executar a Aplicação
+## 1️⃣ Baixar o projeto
 
-Siga os passos abaixo para configurar o ambiente em sua máquina local:
+## Instalação
 
-### 1. Clonar o Repositório
+Execute os comandos abaixo no terminal:
+
 ```bash
-git clone https://github.com/niltonrvazdev/gerenciador-produto.git
+git clone https://github.com/niltonvaz/gerenciador-produto.git
 cd gerenciador-produto
-```
-
-### 2. Configurar Variáveis de Ambiente
-```bash
 cp .env.example .env
-```
-*Nota: Verifique se os valores de banco no `.env` coincidem com o `docker-compose.yml`.*
-
-### 3. Subir o Ambiente Docker
-```bash
-docker compose up -d
-```
-
-### 4. Instalar Dependências e Preparar o Banco
-Execute os comandos abaixo para configurar o Laravel dentro do container:
-```bash
-# Instalar dependências
-docker exec gerenciador_app composer install
-
-# Gerar chave da aplicação
-docker exec gerenciador_app php artisan key:generate
-
-# Criar link simbólico para as imagens (Storage)
-docker exec gerenciador_app php artisan storage:link
-
-# Rodar Migrations e Seeders
-docker exec gerenciador_app php artisan migrate --seed
-```
-**Acesso:** [http://localhost:8000](http://localhost:8000)
-
-### 5. Compilação de Assets (CSS/JS)
-Para que o layout (Tailwind CSS) funcione corretamente, você deve compilar os arquivos de front-end. 
-Rode os comandos abaixo na sua máquina local (fora do container, na pasta raiz do projeto):
-
-```bash
-npm install
-npm run build
----
-
-## 🧪 Como Executar os Testes
-
-A aplicação conta com uma suíte de testes unitários e de integração que garantem a integridade das regras de negócio.
-```bash
-docker exec gerenciador_app php artisan test
+docker compose up -d --build
 ```
 
 ---
@@ -127,13 +95,29 @@ docker exec gerenciador_app php artisan test
 
 **Cadastro:**
 ![cadastrar](https://github.com/user-attachments/assets/8fc8e489-7470-4760-ad06-577021adb022)
-
+**Exemplo**
+{
+    "name": "Teclado Mecânico RGB2",
+    "description": "Switch Brown, ABNT2",
+    "price": 350.90,
+    "stock": 15,
+    "image_url": ""
+}
 **Atualização:**
 ![atualizar](https://github.com/user-attachments/assets/6d08308f-1ccc-4e6a-8e25-eef73e6f9eda)
+**Exemplo**
+{
+    "name": "Relogio",
+    "description": "Verde",
+    "price": 54.90,
+    "stock": 15,
+    "image_url": ""
+}
 
 **Exclusão:**
 ![excluir](https://github.com/user-attachments/assets/ae6bbb40-a845-498e-b78b-c32b80558d1e)
-
+**Exemplo**
+http://localhost:8000/api/products/valor_do_gregistro_a_ser_excluido
 ---
 
 **Desenvolvido por Nilton Rodrigues Vaz** 🚀
