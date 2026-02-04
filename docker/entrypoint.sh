@@ -55,8 +55,18 @@ fi
 mkdir -p storage/framework/{cache,sessions,views}
 mkdir -p storage/app/public
 
+# Permissões de leitura e escrita para www-data (nginx/php-fpm)
 chown -R www-data:www-data storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
+
+# Permissões específicas para pasta de imagens
+chown -R www-data:www-data storage/app
+chmod -R 775 storage/app/public
+
+# Criar link simbólico para servir imagens publicamente
+if [ ! -L "public/storage" ]; then
+  php artisan storage:link || true
+fi
 
 # ===============================
 # Tabelas internas Laravel
