@@ -1,10 +1,11 @@
 {
-    "$schema": "https://www.schemastore.org/package.json",
-    "private": true,
-    "type": "module",
+    "name": "gerenciador-produto",
+    "version": "1.0.0",
+    "description": "Sistema de Gerenciamento de Produtos",
     "scripts": {
+        "dev": "vite",
         "build": "vite build",
-        "dev": "vite"
+        "preview": "vite preview"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

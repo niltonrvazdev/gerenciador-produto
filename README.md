@@ -1,76 +1,140 @@
 # 📦 Gerenciador de Produtos - Laravel 12 & Docker
 
-Este projeto é uma solução para gerenciamento de produtos, desenvolvida com **Laravel 12** e **PHP 8.2**. A aplicação segue as melhores práticas de desenvolvimento, utilizando princípios **SOLID**, **Clean Code** e **Arquitetura em Camadas (Service Layer)**.
-
-## 🛠️ Tecnologias e Ferramentas
-
-- **Framework:** Laravel 12
-- **Linguagem:** PHP 8.2
-- **Banco de Dados:** MySQL 8.0
-- **Containerização:** Docker & Docker Compose
-- **Autenticação Web:** Laravel Breeze (Blade + Tailwind)
-- **Autenticação API:** Laravel Sanctum (Bearer Token)
-- **Testes:** PHPUnit
+Sistema de gerenciamento de produtos com **Laravel 12**, **PHP 8.3**, **Nginx**, **MySQL** e **Vite**.
 
 ---
 
-## 🚀 Como Executar a Aplicação
+## ⚡ Quick Start (3 Passos)
 
-Siga os passos abaixo para configurar o ambiente em sua máquina local:
-
-### 1. Clonar o Repositório
+### 1️⃣ Clonar o Repositório
 ```bash
 git clone https://github.com/niltonrvazdev/gerenciador-produto.git
 cd gerenciador-produto
 ```
 
-### 2. Configurar Variáveis de Ambiente
+### 2️⃣ Iniciar os Containers
 ```bash
-cp .env.example .env
-```
-*Nota: Verifique se os valores de banco no `.env` coincidem com o `docker-compose.yml`.*
-
-### 3. Subir o Ambiente Docker
-```bash
-docker compose up -d
+docker compose up -d --build
+sleep 30
 ```
 
-### 4. Instalar Dependências e Preparar o Banco
-Execute os comandos abaixo para configurar o Laravel dentro do container:
-```bash
-# Instalar dependências
-docker exec gerenciador_app composer install
-
-# Gerar chave da aplicação
-docker exec gerenciador_app php artisan key:generate
-
-# Criar link simbólico para as imagens (Storage)
-docker exec gerenciador_app php artisan storage:link
-
-# Rodar Migrations e Seeders
-docker exec gerenciador_app php artisan migrate --seed
+### 3️⃣ Acessar no Navegador
 ```
-**Acesso:** [http://localhost:8000](http://localhost:8000)
-
-### 5. Compilação de Assets (CSS/JS)
-Para que o layout (Tailwind CSS) funcione corretamente, você deve compilar os arquivos de front-end. 
-Rode os comandos abaixo na sua máquina local (fora do container, na pasta raiz do projeto):
-
-```bash
-npm install
-npm run build
----
-
-## 🧪 Como Executar os Testes
-
-A aplicação conta com uma suíte de testes unitários e de integração que garantem a integridade das regras de negócio.
-```bash
-docker exec gerenciador_app php artisan test
+http://localhost:8000
 ```
+
+✅ **Pronto!** Sua aplicação está rodando.
 
 ---
 
-## 📌 Funcionalidades Implementadas
+## 🤖 Alternativa: Setup Automático
+
+Se preferir uma instalação completamente automatizada:
+
+```bash
+./setup.sh
+```
+
+Este script valida dependências, inicia containers, e verifica se tudo está funcionando.
+
+---
+
+## ⚙️ Configuração Manual Detalhada
+
+Para um guia passo-a-passo completo com explicações detalhadas, consulte [SETUP_GUIDE.md](./SETUP_GUIDE.md).
+
+### Pré-requisitos
+- Git
+- Docker
+- Docker Compose
+
+> ⚠️ Não é necessário instalar PHP, MySQL, Node ou NPM em sua máquina.
+> Tudo rodará dentro do Docker.
+
+### Instalação
+
+```bash
+git clone https://github.com/niltonrvazdev/gerenciador-produto.git
+cd gerenciador-produto
+docker compose up -d --build
+```
+
+---
+
+## � Documentação
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [SETUP_GUIDE.md](./SETUP_GUIDE.md) | Guia completo de setup com todos os detalhes |
+| [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) | Análise técnica do erro 502 e resolução |
+| [DEBUG_CHECKLIST.md](./DEBUG_CHECKLIST.md) | Checklist rápido para diagnóstico de problemas |
+| [CHANGELOG.md](./CHANGELOG.md) | Histórico de alterações e hotfixes |
+| [RESUMO_EXECUTIVO.md](./RESUMO_EXECUTIVO.md) | Resumo técnico da solução implementada |
+
+---
+
+## 🔧 Comandos Úteis
+
+```bash
+# Ver status dos containers
+docker compose ps
+
+# Ver logs da aplicação
+docker compose logs -f app
+
+# Parar a aplicação
+docker compose down
+
+# Reiniciar
+docker compose restart
+
+# Acessar terminal do container
+docker compose exec app bash
+
+# Compilar assets (CSS/JavaScript)
+docker compose exec app npm run build
+
+# Rodar migrations
+docker compose exec app php artisan migrate
+
+# Criar usuário de teste
+docker compose exec app php artisan tinker
+# E dentro do Tinker:
+# >>> User::factory()->create(['email' => 'test@example.com']);
+```
+
+---
+
+## 🌐 URLs de Acesso
+
+| Serviço | URL |
+|---------|-----|
+| Aplicação | http://localhost:8000 |
+| MySQL | localhost:3306 |
+| Nginx | http://localhost:8000 |
+
+---
+
+## 🐛 Encontrou um Erro?
+
+1. **Execute o diagnóstico:**
+   ```bash
+   ./validate_502_fix.sh
+   ```
+
+2. **Consulte o checklist:**
+   ```bash
+   cat DEBUG_CHECKLIST.md
+   ```
+
+3. **Leia a análise técnica:**
+   ```bash
+   cat TROUBLESHOOTING.md
+   ```
+
+---
+
+## �📌 Funcionalidades Implementadas
 
 ### 💻 Interface Web
 - **Vitrine Pública:** Listagem de produtos em cards responsivos com imagem, nome, descrição e preço.
@@ -127,12 +191,71 @@ docker exec gerenciador_app php artisan test
 
 **Cadastro:**
 ![cadastrar](https://github.com/user-attachments/assets/8fc8e489-7470-4760-ad06-577021adb022)
-
+**Exemplo**
+{
+    "name": "Teclado Mecânico RGB2",
+    "description": "Switch Brown, ABNT2",
+    "price": 350.90,
+    "stock": 15,
+    "image_url": ""
+}
 **Atualização:**
 ![atualizar](https://github.com/user-attachments/assets/6d08308f-1ccc-4e6a-8e25-eef73e6f9eda)
+**Exemplo**
+{
+    "name": "Relogio",
+    "description": "Verde",
+    "price": 54.90,
+    "stock": 15,
+    "image_url": ""
+}
 
 **Exclusão:**
 ![excluir](https://github.com/user-attachments/assets/ae6bbb40-a845-498e-b78b-c32b80558d1e)
+**Exemplo**
+http://localhost:8000/api/products/valor_do_gregistro_a_ser_excluido
+
+---
+
+## 🛠️ Stack Tecnológico
+
+| Componente | Tecnologia | Versão |
+|-----------|-----------|--------|
+| Framework Web | Laravel | 12.x |
+| Linguagem | PHP | 8.3 |
+| Banco de Dados | MySQL | 8.0 |
+| Web Server | Nginx | Alpine |
+| Node Runtime | Node.js | v22 |
+| Build Tool | Vite | 7.0.7 |
+| CSS Framework | Tailwind CSS | 3.1.0 |
+| JavaScript | Alpine.js | 3.x |
+| Containerização | Docker | Latest |
+| Orquestração | Docker Compose | Latest |
+
+---
+
+## 📈 Arquitetura
+
+```
+┌─────────────────────────────────────────────┐
+│  Navegador (http://localhost:8000)          │
+└────────────────────┬────────────────────────┘
+                     │
+    ┌────────────────┴──────────────────┐
+    │    Docker Compose Network        │
+    │                                   │
+    ├──────────────────────────────────┤
+    │  nginx:alpine (Port 8000)        │
+    │  ↓                               │
+    │  app (PHP 8.3 + Laravel 12)      │
+    │  ↓                               │
+    │  mysql:8.0                       │
+    │                                   │
+    │  Volume mounts for dev:          │
+    │  - /app → projeto local          │
+    │  - /storage → storage/           │
+    └──────────────────────────────────┘
+```
 
 ---
 
